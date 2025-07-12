@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="list_item_title">List Item - ReWear</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-bg">
+    <!-- Header -->
+    <header>
+        <div class="logo" data-i18n="logo"><strong>ReWear</strong></div>
+        <nav>
+            <a href="index.html" data-i18n="nav_home">Home</a>
+            <a href="browse.html" data-i18n="nav_browse">Browse</a>
+            <a href="dashboard.html" data-i18n="nav_dashboard">Dashboard</a>
+            <a href="messages.html" data-i18n="nav_messages">Messages</a>
+            <a href="profile.html" data-i18n="nav_profile">Profile</a>
+            <a href="#" data-i18n="nav_list_item" class="active">List Item</a>
+            <a href="admin-login.html" class="admin-link">👨‍💼 Admin</a>
+        </nav>
+        <div class="header-right">
+            <div class="theme-toggle">
+                <button id="themeToggle" aria-label="Toggle theme">
+                    <span class="light-icon">☀️</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main List Item Content -->
+    <main class="list-item-main">
+        <div class="list-item-container">
+            <!-- Header -->
+            <div class="list-item-header">
+                <h1 data-i18n="list_item_heading">List Your Item</h1>
+                <p data-i18n="list_item_subtitle">Share your pre-loved clothes with the community and help reduce fashion waste</p>
+            </div>
+
+            <!-- Form Container -->
+            <div class="list-item-form-container">
+                <form class="list-item-form" id="listItemForm">
+                    <!-- Basic Information -->
+                    <div class="form-section">
+                        <h2 data-i18n="basic_info">Basic Information</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="itemName" data-i18n="item_name">Item Name *</label>
+                                <input type="text" id="itemName" name="itemName" required data-i18n="item_name_placeholder" placeholder="e.g., Blue Denim Jacket">
+                            </div>
+                            <div class="form-group">
+                                <label for="itemCategory" data-i18n="item_category">Category *</label>
+                                <select id="itemCategory" name="itemCategory" required>
+                                    <option value="" data-i18n="select_category">Select Category</option>
+                                    <option value="men" data-i18n="cat_men">Men's Wear</option>
+                                    <option value="women" data-i18n="cat_women">Women's Wear</option>
+                                    <option value="kids" data-i18n="cat_kids">Kids' Wear</option>
+                                    <option value="accessories" data-i18n="cat_accessories">Accessories</option>
+                                    <option value="shoes" data-i18n="cat_shoes">Shoes</option>
+                                    <option value="sportswear" data-i18n="cat_sportswear">Sportswear</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="itemDescription" data-i18n="item_description">Description *</label>
+                            <textarea id="itemDescription" name="itemDescription" rows="4" required data-i18n="item_description_placeholder" placeholder="Describe your item, its condition, brand, and any special features..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Images Upload -->
+                    <div class="form-section">
+                        <h2 data-i18n="item_images">Item Images</h2>
+                        <div class="image-upload-container">
+                            <div class="image-upload-area" id="imageUploadArea">
+                                <div class="upload-placeholder">
+                                    <span class="upload-icon">📷</span>
+                                    <p data-i18n="upload_text">Click to upload images or drag and drop</p>
+                                    <p class="upload-hint" data-i18n="upload_hint">Up to 5 images, max 5MB each</p>
+                                </div>
+                                <input type="file" id="imageUpload" name="images" multiple accept="image/*" style="display: none;">
+                            </div>
+                            
+                            <!-- Camera Toggle Button -->
+                            <div class="camera-toggle">
+                                <button id="toggleCamera" class="camera-toggle-btn">
+                                    <span class="camera-icon">📷</span>
+                                    Use Camera
+                                </button>
+                            </div>
+                            
+                            <!-- Camera Access Section -->
+                            <div class="camera-section" style="display: none;">
+                                <h4>📷 Take Photo with Camera</h4>
+                                <div class="camera-container">
+                                    <video id="cameraVideo" autoplay playsinline style="display: none; width: 100%; max-width: 400px; border-radius: 10px;"></video>
+                                    <canvas id="cameraCanvas" style="display: none;"></canvas>
+                                    <div class="camera-controls">
+                                        <button id="startCamera" class="camera-btn">
+                                            <span class="camera-icon">📷</span>
+                                            Start Camera
+                                        </button>
+                                        <button id="takePhoto" class="camera-btn" style="display: none;">
+                                            <span class="camera-icon">📸</span>
+                                            Take Photo
+                                        </button>
+                                        <button id="stopCamera" class="camera-btn" style="display: none;">
+                                            <span class="camera-icon">⏹️</span>
+                                            Stop Camera
+                                        </button>
+                                        <button id="retakePhoto" class="camera-btn" style="display: none;">
+                                            <span class="camera-icon">🔄</span>
+                                            Retake
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="image-preview-grid" id="imagePreviewGrid"></div>
+                        </div>
+                    </div>
+
+                    <!-- Details -->
+                    <div class="form-section">
+                        <h2 data-i18n="item_details">Item Details</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="itemBrand" data-i18n="item_brand">Brand</label>
+                                <input type="text" id="itemBrand" name="itemBrand" data-i18n="item_brand_placeholder" placeholder="e.g., Nike, Zara, H&M">
+                            </div>
+                            <div class="form-group">
+                                <label for="itemSize" data-i18n="item_size">Size *</label>
+                                <select id="itemSize" name="itemSize" required>
+                                    <option value="" data-i18n="select_size">Select Size</option>
+                                    <option value="XS" data-i18n="size_xs">XS</option>
+                                    <option value="S" data-i18n="size_s">S</option>
+                                    <option value="M" data-i18n="size_m">M</option>
+                                    <option value="L" data-i18n="size_l">L</option>
+                                    <option value="XL" data-i18n="size_xl">XL</option>
+                                    <option value="XXL" data-i18n="size_xxl">XXL</option>
+                                    <option value="custom" data-i18n="size_custom">Custom</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="itemColor" data-i18n="item_color">Color</label>
+                                <input type="text" id="itemColor" name="itemColor" data-i18n="item_color_placeholder" placeholder="e.g., Blue, Red, Black">
+                            </div>
+                            <div class="form-group">
+                                <label for="itemCondition" data-i18n="item_condition">Condition *</label>
+                                <select id="itemCondition" name="itemCondition" required>
+                                    <option value="" data-i18n="select_condition">Select Condition</option>
+                                    <option value="new" data-i18n="condition_new">New with tags</option>
+                                    <option value="excellent" data-i18n="condition_excellent">Excellent</option>
+                                    <option value="good" data-i18n="condition_good">Good</option>
+                                    <option value="fair" data-i18n="condition_fair">Fair</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="itemPrice" data-i18n="item_price">Price (USD) *</label>
+                                <input type="number" id="itemPrice" name="itemPrice" min="0" step="0.01" required data-i18n="item_price_placeholder" placeholder="0.00">
+                            </div>
+                            <div class="form-group">
+                                <label for="itemAge" data-i18n="item_age">Age (months)</label>
+                                <input type="number" id="itemAge" name="itemAge" min="0" data-i18n="item_age_placeholder" placeholder="How old is this item?">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Swap Preferences -->
+                    <div class="form-section">
+                        <h2 data-i18n="swap_preferences">Swap Preferences</h2>
+                        <div class="form-group">
+                            <label data-i18n="swap_type">Swap Type</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="swapForMoney" checked>
+                                    <span class="checkmark"></span>
+                                    <span data-i18n="swap_money">Swap for money</span>
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="swapForItems" checked>
+                                    <span class="checkmark"></span>
+                                    <span data-i18n="swap_items">Swap for other items</span>
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="swapForDonation">
+                                    <span class="checkmark"></span>
+                                    <span data-i18n="swap_donation">Donate to charity</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="preferredCategories" data-i18n="preferred_categories">Preferred Swap Categories</label>
+                            <select id="preferredCategories" name="preferredCategories" multiple>
+                                <option value="men" data-i18n="cat_men">Men's Wear</option>
+                                <option value="women" data-i18n="cat_women">Women's Wear</option>
+                                <option value="kids" data-i18n="cat_kids">Kids' Wear</option>
+                                <option value="accessories" data-i18n="cat_accessories">Accessories</option>
+                                <option value="shoes" data-i18n="cat_shoes">Shoes</option>
+                                <option value="sportswear" data-i18n="cat_sportswear">Sportswear</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Location & Pickup -->
+                    <div class="form-section">
+                        <h2 data-i18n="location_pickup">Location & Pickup</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="itemLocation" data-i18n="item_location">Location *</label>
+                                <input type="text" id="itemLocation" name="itemLocation" required data-i18n="item_location_placeholder" placeholder="City, State">
+                            </div>
+                            <div class="form-group">
+                                <label for="pickupMethod" data-i18n="pickup_method">Pickup Method *</label>
+                                <select id="pickupMethod" name="pickupMethod" required>
+                                    <option value="" data-i18n="select_pickup">Select Pickup Method</option>
+                                    <option value="meetup" data-i18n="pickup_meetup">Meet in person</option>
+                                    <option value="shipping" data-i18n="pickup_shipping">Shipping</option>
+                                    <option value="both" data-i18n="pickup_both">Both options</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="save-draft-btn" data-i18n="save_draft">Save as Draft</button>
+                        <button type="submit" class="list-item-btn" data-i18n="list_item">List Item</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal" style="display:none;">
+        <div class="modal-content auth-modal">
+            <div class="success-animation">
+                <div class="checkmark-circle">✓</div>
+            </div>
+            <h3 data-i18n="item_listed_title">Item Listed Successfully!</h3>
+            <p data-i18n="item_listed_msg">Your item has been listed and is now visible to the community. You'll be notified when someone shows interest!</p>
+            <div class="modal-actions">
+                <button class="auth-btn primary-btn" onclick="window.location.href='dashboard.html'" data-i18n="go_dashboard">Go to Dashboard</button>
+                <button class="auth-btn secondary-btn" onclick="window.location.href='browse.html'" data-i18n="browse_items">Browse Items</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notificationToast" class="notification-toast" style="display:none;">
+        <div class="toast-content">
+            <span class="toast-icon">✅</span>
+            <span class="toast-message" data-i18n="toast_success">Item listed successfully!</span>
+        </div>
+    </div>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="camera.js"></script>
+    <script src="theme.js"></script>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    
+    <script>
+    // List item page functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // Wait for Firebase to be available
+        function waitForFirebase() {
+            if (typeof firebase !== 'undefined' && window.firebaseAuth && window.firebaseDatabase) {
+                initializeListItem();
+            } else {
+                setTimeout(waitForFirebase, 100);
+            }
+        }
+        
+        function initializeListItem() {
+            const userMenu = document.querySelector('.user-menu');
+            const notificationToast = document.getElementById('notificationToast');
+            const successModal = document.getElementById('successModal');
+            const listItemForm = document.getElementById('listItemForm');
+            const imageUploadArea = document.getElementById('imageUploadArea');
+            const imageUpload = document.getElementById('imageUpload');
+            const imagePreviewGrid = document.getElementById('imagePreviewGrid');
+            const langSelect = document.getElementById('langSelect');
+
+            // Get Firebase instances
+            const auth = window.firebaseAuth;
+            const database = window.firebaseDatabase;
+            
+            // Debug: Check if Firebase is loaded
+            if (!auth || !database) {
+                console.error('Firebase auth or database is not available');
+                alert('Firebase is not available. Please check your internet connection and try again.');
+                return;
+            }
+
+            console.log('Firebase initialized for list item:', { auth, database });
+
+            let uploadedImages = [];
+
+            // User menu toggle
+            if (userMenu) {
+                userMenu.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                });
+
+                // Close user menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!userMenu.contains(e.target)) {
+                        userMenu.classList.remove('active');
+                    }
+                });
+            }
+
+            // Image upload functionality
+            imageUploadArea.addEventListener('click', function() {
+                imageUpload.click();
+            });
+
+            imageUploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.classList.add('dragover');
+            });
+
+            imageUploadArea.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                this.classList.remove('dragover');
+            });
+
+            imageUploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.classList.remove('dragover');
+                const files = e.dataTransfer.files;
+                handleImageFiles(files);
+            });
+
+            imageUpload.addEventListener('change', function(e) {
+                handleImageFiles(e.target.files);
+            });
+
+            // Camera functionality
+            const startCameraBtn = document.getElementById('startCamera');
+            const takePhotoBtn = document.getElementById('takePhoto');
+            const stopCameraBtn = document.getElementById('stopCamera');
+            const retakePhotoBtn = document.getElementById('retakePhoto');
+            const cameraVideo = document.getElementById('cameraVideo');
+            const cameraCanvas = document.getElementById('cameraCanvas');
+            
+            let stream = null;
+            let capturedImage = null;
+
+            // Start camera
+            if (startCameraBtn) {
+                startCameraBtn.addEventListener('click', async function() {
+                    try {
+                        stream = await navigator.mediaDevices.getUserMedia({ 
+                            video: { 
+                                facingMode: 'environment',
+                                width: { ideal: 1280 },
+                                height: { ideal: 720 }
+                            } 
+                        });
+                        
+                        cameraVideo.srcObject = stream;
+                        cameraVideo.style.display = 'block';
+                        startCameraBtn.style.display = 'none';
+                        takePhotoBtn.style.display = 'inline-block';
+                        stopCameraBtn.style.display = 'inline-block';
+                        
+                        document.querySelector('.camera-section').style.display = 'block';
+                        
+                    } catch (error) {
+                        console.error('Camera access denied:', error);
+                        alert('Camera access denied. Please allow camera permissions and try again.');
+                    }
+                });
+            }
+
+            // Take photo
+            if (takePhotoBtn) {
+                takePhotoBtn.addEventListener('click', function() {
+                    const context = cameraCanvas.getContext('2d');
+                    cameraCanvas.width = cameraVideo.videoWidth;
+                    cameraCanvas.height = cameraVideo.videoHeight;
+                    
+                    context.drawImage(cameraVideo, 0, 0, cameraCanvas.width, cameraCanvas.height);
+                    
+                    cameraCanvas.toBlob(function(blob) {
+                        capturedImage = blob;
+                        
+                        const file = new File([blob], `camera-photo-${Date.now()}.jpg`, { type: 'image/jpeg' });
+                        handleImageFiles([file]);
+                        
+                        takePhotoBtn.style.display = 'none';
+                        retakePhotoBtn.style.display = 'inline-block';
+                    }, 'image/jpeg', 0.8);
+                });
+            }
+
+            // Stop camera
+            if (stopCameraBtn) {
+                stopCameraBtn.addEventListener('click', function() {
+                    if (stream) {
+                        stream.getTracks().forEach(track => track.stop());
+                        stream = null;
+                    }
+                    
+                    cameraVideo.style.display = 'none';
+                    cameraVideo.srcObject = null;
+                    startCameraBtn.style.display = 'inline-block';
+                    takePhotoBtn.style.display = 'none';
+                    stopCameraBtn.style.display = 'none';
+                    retakePhotoBtn.style.display = 'none';
+                });
+            }
+
+            // Retake photo
+            if (retakePhotoBtn) {
+                retakePhotoBtn.addEventListener('click', function() {
+                    capturedImage = null;
+                    retakePhotoBtn.style.display = 'none';
+                    takePhotoBtn.style.display = 'inline-block';
+                });
+            }
+
+            function handleImageFiles(files) {
+                Array.from(files).forEach(file => {
+                    if (file.type.startsWith('image/') && uploadedImages.length < 5) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            uploadedImages.push({
+                                file: file,
+                                preview: e.target.result
+                            });
+                            renderImagePreviews();
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+
+            function renderImagePreviews() {
+                imagePreviewGrid.innerHTML = '';
+                uploadedImages.forEach((image, index) => {
+                    const previewElement = document.createElement('div');
+                    previewElement.className = 'image-preview';
+                    previewElement.innerHTML = `
+                        <img src="${image.preview}" alt="Preview">
+                        <button type="button" class="remove-image" data-index="${index}">×</button>
+                    `;
+                    imagePreviewGrid.appendChild(previewElement);
+                });
+
+                // Add remove functionality
+                document.querySelectorAll('.remove-image').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        uploadedImages.splice(index, 1);
+                        renderImagePreviews();
+                    });
+                });
+            }
+
+            // Form submission with Firebase
+            listItemForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Check if user is authenticated
+                const currentUser = auth.currentUser;
+                if (!currentUser) {
+                    showNotification('Please login to list an item');
+                    return;
+                }
+                
+                // Basic validation
+                const requiredFields = ['itemName', 'itemCategory', 'itemDescription', 'itemSize', 'itemCondition', 'itemPrice', 'itemLocation', 'pickupMethod'];
+                let isValid = true;
+
+                requiredFields.forEach(field => {
+                    const element = document.getElementById(field);
+                    if (!element.value.trim()) {
+                        element.style.borderColor = '#f44336';
+                        isValid = false;
+                    } else {
+                        element.style.borderColor = '#e0e0e0';
+                    }
+                });
+
+                if (!isValid) {
+                    showNotification('Please fill in all required fields');
+                    return;
+                }
+
+                // Show loading state
+                const submitBtn = listItemForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Listing Item...';
+                submitBtn.disabled = true;
+
+                // Prepare item data
+                const formData = new FormData(listItemForm);
+                const itemData = {
+                    id: Date.now().toString(), // Generate unique ID
+                    userId: currentUser.uid,
+                    userName: currentUser.displayName || currentUser.email.split('@')[0],
+                    userEmail: currentUser.email,
+                    itemName: formData.get('itemName'),
+                    itemCategory: formData.get('itemCategory'),
+                    itemDescription: formData.get('itemDescription'),
+                    itemBrand: formData.get('itemBrand') || '',
+                    itemSize: formData.get('itemSize'),
+                    itemColor: formData.get('itemColor') || '',
+                    itemCondition: formData.get('itemCondition'),
+                    itemPrice: parseFloat(formData.get('itemPrice')),
+                    itemAge: formData.get('itemAge') ? parseInt(formData.get('itemAge')) : null,
+                    itemLocation: formData.get('itemLocation'),
+                    pickupMethod: formData.get('pickupMethod'),
+                    swapForMoney: formData.has('swapForMoney'),
+                    swapForItems: formData.has('swapForItems'),
+                    swapForDonation: formData.has('swapForDonation'),
+                    preferredCategories: Array.from(formData.getAll('preferredCategories')),
+                    images: uploadedImages.map(img => img.preview), // Store image previews as base64
+                    createdAt: new Date().toISOString(),
+                    status: 'active'
+                };
+
+                // Save to Firebase Realtime Database
+                const itemsRef = database.ref('items');
+                itemsRef.push(itemData)
+                    .then(() => {
+                        console.log('Item saved to Firebase successfully');
+                        
+                        // Reset form
+                        listItemForm.reset();
+                        uploadedImages = [];
+                        renderImagePreviews();
+                        
+                        // Reset button state
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                        
+                        // Show success modal
+                        successModal.style.display = 'flex';
+                        setTimeout(() => {
+                            successModal.classList.add('open');
+                        }, 10);
+                        
+                        // Clear draft
+                        localStorage.removeItem('itemDraft');
+                        
+                    })
+                    .catch((error) => {
+                        console.error('Error saving item to Firebase:', error);
+                        showNotification('Failed to list item. Please try again.');
+                        
+                        // Reset button state
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    });
+            });
+
+            // Save draft functionality
+            document.querySelector('.save-draft-btn').addEventListener('click', function() {
+                const formData = new FormData(listItemForm);
+                const draftData = {};
+                for (let [key, value] of formData.entries()) {
+                    draftData[key] = value;
+                }
+                draftData.images = uploadedImages;
+                localStorage.setItem('itemDraft', JSON.stringify(draftData));
+                showNotification('Draft saved successfully!');
+            });
+
+            // Load draft if exists
+            function loadDraft() {
+                const draft = localStorage.getItem('itemDraft');
+                if (draft) {
+                    const draftData = JSON.parse(draft);
+                    Object.keys(draftData).forEach(key => {
+                        const element = document.getElementById(key);
+                        if (element && key !== 'images') {
+                            element.value = draftData[key];
+                        }
+                    });
+                    if (draftData.images) {
+                        uploadedImages = draftData.images;
+                        renderImagePreviews();
+                    }
+                }
+            }
+
+            // Show notification function
+            function showNotification(message) {
+                notificationToast.querySelector('.toast-message').textContent = message;
+                notificationToast.style.display = 'block';
+                notificationToast.classList.add('show');
+                
+                setTimeout(() => {
+                    notificationToast.classList.remove('show');
+                    setTimeout(() => {
+                        notificationToast.style.display = 'none';
+                    }, 300);
+                }, 3000);
+            }
+
+            // Language support
+            function translateListItemPage(lang) {
+                const dict = window.translations[lang] || window.translations['en'];
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if(dict[key]) {
+                        if(el.tagName.toLowerCase() === 'title') {
+                            document.title = dict[key];
+                        } else if(el.tagName.toLowerCase() === 'input' || el.tagName.toLowerCase() === 'textarea') {
+                            el.placeholder = dict[key];
+                        } else {
+                            el.textContent = dict[key];
+                        }
+                    }
+                });
+            }
+
+            if (langSelect) {
+                langSelect.addEventListener('change', function() {
+                    translateListItemPage(this.value);
+                });
+            }
+
+            // Initialize
+            loadDraft();
+            translateListItemPage('en');
+        }
+        
+        // Start waiting for Firebase
+        waitForFirebase();
+    });
+    </script>
+</body>
+</html> 

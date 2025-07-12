@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="profile_title">Profile - ReWear</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-bg">
+    <!-- Header -->
+    <header>
+        <div class="logo" data-i18n="logo"><strong>ReWear</strong></div>
+        <nav>
+            <a href="index.html" data-i18n="nav_home">Home</a>
+            <a href="browse.html" data-i18n="nav_browse">Browse</a>
+            <a href="dashboard.html" data-i18n="nav_dashboard">Dashboard</a>
+            <a href="messages.html" data-i18n="nav_messages">Messages</a>
+            <a href="#" data-i18n="nav_profile" class="active">Profile</a>
+            <a href="list-item.html" data-i18n="nav_list_item">List Item</a>
+            <a href="admin-login.html" class="admin-link">👨‍💼 Admin</a>
+        </nav>
+        <div class="header-right">
+            <div class="theme-toggle">
+                <button id="themeToggle" aria-label="Toggle theme">
+                    <span class="light-icon">☀️</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Profile Content -->
+    <main class="dashboard-main">
+        <!-- Profile Header -->
+        <section class="profile-header">
+            <div class="profile-cover">
+                <div class="profile-avatar">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80" alt="Profile Picture" id="profileImage">
+                    <button class="avatar-edit" data-i18n="edit_avatar">📷</button>
+                </div>
+                <div class="profile-info">
+                    <h1 data-i18n="profile_name">John Doe</h1>
+                    <p data-i18n="profile_bio">Sustainable fashion enthusiast | Helping clothes find new homes</p>
+                    <div class="profile-stats">
+                        <span class="stat" data-i18n="profile_swaps">12 Swaps</span>
+                        <span class="stat" data-i18n="profile_rating">4.8 ★</span>
+                        <span class="stat" data-i18n="profile_member">Member since 2023</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Content Grid -->
+        <section class="profile-grid">
+            <!-- Personal Information -->
+            <div class="profile-card">
+                <div class="card-header">
+                    <h2 data-i18n="personal_info">Personal Information</h2>
+                    <button class="edit-btn" data-i18n="edit">Edit</button>
+                </div>
+                <form class="profile-form" id="personalForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label data-i18n="full_name">Full Name</label>
+                            <input type="text" value="John Doe" data-i18n="full_name_placeholder" placeholder="Enter your full name">
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="username">Username</label>
+                            <input type="text" value="johndoe" data-i18n="username_placeholder" placeholder="Enter username">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label data-i18n="email">Email</label>
+                            <input type="email" value="john.doe@email.com" data-i18n="email_placeholder" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="phone">Phone</label>
+                            <input type="tel" value="+1 234 567 8900" data-i18n="phone_placeholder" placeholder="Enter your phone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="bio">Bio</label>
+                        <textarea data-i18n="bio_placeholder" placeholder="Tell us about yourself...">Sustainable fashion enthusiast | Helping clothes find new homes</textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label data-i18n="location">Location</label>
+                            <input type="text" value="New York, NY" data-i18n="location_placeholder" placeholder="Enter your location">
+                        </div>
+                        <div class="form-group">
+                            <label data-i18n="birth_date">Birth Date</label>
+                            <input type="date" value="1990-05-15">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="save-btn" data-i18n="save_changes">Save Changes</button>
+                        <button type="button" class="cancel-btn" data-i18n="cancel">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Account Settings -->
+            <div class="profile-card">
+                <div class="card-header">
+                    <h2 data-i18n="account_settings">Account Settings</h2>
+                </div>
+                <div class="settings-list">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3 data-i18n="change_password">Change Password</h3>
+                            <p data-i18n="password_desc">Update your account password</p>
+                        </div>
+                        <button class="setting-btn" data-i18n="change">Change</button>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3 data-i18n="two_factor">Two-Factor Authentication</h3>
+                            <p data-i18n="two_factor_desc">Add extra security to your account</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="twoFactor">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3 data-i18n="privacy">Privacy Settings</h3>
+                            <p data-i18n="privacy_desc">Control who can see your profile</p>
+                        </div>
+                        <button class="setting-btn" data-i18n="manage">Manage</button>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3 data-i18n="delete_account">Delete Account</h3>
+                            <p data-i18n="delete_account_desc">Permanently delete your account</p>
+                        </div>
+                        <button class="setting-btn danger" data-i18n="delete">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preferences -->
+            <div class="profile-card">
+                <div class="card-header">
+                    <h2 data-i18n="preferences">Preferences</h2>
+                </div>
+                <div class="preferences-list">
+                    <div class="preference-item">
+                        <div class="preference-info">
+                            <h3 data-i18n="email_notifications">Email Notifications</h3>
+                            <p data-i18n="email_notifications_desc">Receive updates about swaps and messages</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="emailNotif" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="preference-item">
+                        <div class="preference-info">
+                            <h3 data-i18n="push_notifications">Push Notifications</h3>
+                            <p data-i18n="push_notifications_desc">Get instant notifications on your device</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="pushNotif" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="preference-item">
+                        <div class="preference-info">
+                            <h3 data-i18n="newsletter">Newsletter</h3>
+                            <p data-i18n="newsletter_desc">Receive updates about new features</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="newsletter">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="preference-item">
+                        <div class="preference-info">
+                            <h3 data-i18n="language">Language</h3>
+                            <p data-i18n="language_desc">Choose your preferred language</p>
+                        </div>
+                        <select class="language-select" id="profileLangSelect">
+                            <option value="en">English</option>
+                            <option value="hi">हिन्दी (Hindi)</option>
+                            <option value="bn">বাংলা (Bengali)</option>
+                            <option value="te">తెలుగు (Telugu)</option>
+                            <option value="mr">मराठी (Marathi)</option>
+                            <option value="ta">தமிழ் (Tamil)</option>
+                            <option value="ur">اردو (Urdu)</option>
+                            <option value="gu">ગુજરાતી (Gujarati)</option>
+                            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+                            <option value="ml">മലയാളം (Malayalam)</option>
+                            <option value="or">ଓଡ଼ିଆ (Odia)</option>
+                            <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="profile-card">
+                <div class="card-header">
+                    <h2 data-i18n="recent_activity">Recent Activity</h2>
+                    <a href="#" class="view-all" data-i18n="view_all">View All</a>
+                </div>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">🔄</div>
+                        <div class="activity-content">
+                            <h4 data-i18n="activity_swap">Swap Completed</h4>
+                            <p data-i18n="activity_swap_desc">Successfully swapped "Blue Jeans" with Sarah</p>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">📝</div>
+                        <div class="activity-content">
+                            <h4 data-i18n="activity_listed">Item Listed</h4>
+                            <p data-i18n="activity_listed_desc">Added "White Shirt" to your listings</p>
+                            <span class="activity-time">1 day ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">⭐</div>
+                        <div class="activity-content">
+                            <h4 data-i18n="activity_rated">Rated User</h4>
+                            <p data-i18n="activity_rated_desc">You rated Emma 5 stars for a great swap</p>
+                            <span class="activity-time">3 days ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Change Password Modal -->
+    <div id="passwordModal" class="modal" style="display:none;">
+        <div class="modal-content auth-modal">
+            <h3 data-i18n="change_password_title">Change Password</h3>
+            <form id="passwordForm" class="auth-form">
+                <div class="form-group">
+                    <label data-i18n="current_password">Current Password</label>
+                    <input type="password" id="currentPassword" required>
+                    <div class="input-icon">🔒</div>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="new_password">New Password</label>
+                    <input type="password" id="newPassword" required>
+                    <div class="input-icon">🔒</div>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="confirm_new_password">Confirm New Password</label>
+                    <input type="password" id="confirmNewPassword" required>
+                    <div class="input-icon">🔒</div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="auth-btn primary-btn" data-i18n="update_password">Update Password</button>
+                    <button type="button" class="auth-btn secondary-btn" data-i18n="cancel">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notificationToast" class="notification-toast" style="display:none;">
+        <div class="toast-content">
+            <span class="toast-icon">✅</span>
+            <span class="toast-message" data-i18n="toast_success">Changes saved successfully!</span>
+        </div>
+    </div>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="theme.js"></script>
+    
+    <script>
+    // Profile page functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // Require authentication
+        if (authManager && !authManager.requireAuth()) {
+            return;
+        }
+
+        // Load user data from localStorage
+        const currentUser = authManager.getCurrentUser();
+        if (currentUser) {
+            // Update profile header
+            const profileName = document.querySelector('.profile-info h1');
+            if (profileName) {
+                profileName.textContent = currentUser.name || 'User';
+            }
+            
+            // Update form fields with user data
+            const nameInputs = document.querySelectorAll('input[type="text"]');
+            const emailInputs = document.querySelectorAll('input[type="email"]');
+            
+            // Update name fields
+            nameInputs.forEach(input => {
+                if (input.placeholder && input.placeholder.includes('name')) {
+                    input.value = currentUser.name || '';
+                }
+                if (input.placeholder && input.placeholder.includes('username')) {
+                    input.value = (currentUser.name || '').toLowerCase().replace(/\s+/g, '');
+                }
+            });
+            
+            // Update email fields
+            emailInputs.forEach(input => {
+                if (input.placeholder && input.placeholder.includes('email')) {
+                    input.value = currentUser.email || '';
+                }
+            });
+
+            // Update member since date
+            const memberSinceElement = document.querySelector('.profile-stats .stat:last-child');
+            if (memberSinceElement && currentUser.loginTime) {
+                const loginDate = new Date(currentUser.loginTime);
+                const year = loginDate.getFullYear();
+                memberSinceElement.textContent = `Member since ${year}`;
+            }
+        }
+
+        // Profile functionality
+        const userMenu = document.querySelector('.user-menu');
+        const profileForm = document.getElementById('personalForm');
+
+        // User menu toggle
+        if (userMenu) {
+            userMenu.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        }
+
+        // Close user menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (userMenu && !userMenu.contains(e.target)) {
+                userMenu.classList.remove('active');
+            }
+        });
+
+        // Profile form submission
+        if (profileForm) {
+            profileForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const newName = profileForm.querySelector('input[placeholder*="name"]').value;
+                
+                // Update user data in localStorage
+                if (currentUser) {
+                    currentUser.name = newName;
+                    localStorage.setItem('userData', JSON.stringify(currentUser));
+                    
+                    // Update the profile header
+                    const profileName = document.querySelector('.profile-info h1');
+                    if (profileName) {
+                        profileName.textContent = newName;
+                    }
+                    
+                    alert('Profile updated successfully!');
+                }
+            });
+        }
+
+        // Language switching
+        const langSelect = document.getElementById('langSelect');
+        if (langSelect) {
+            langSelect.addEventListener('change', function() {
+                const lang = this.value;
+                translatePage(lang);
+            });
+        }
+
+        function translatePage(lang) {
+            const dict = window.translations[lang] || window.translations['en'];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(dict[key]) {
+                    if(el.tagName.toLowerCase() === 'title') {
+                        document.title = dict[key];
+                    } else {
+                        el.textContent = dict[key];
+                    }
+                }
+            });
+        }
+
+        // Initialize with English
+        translatePage('en');
+    });
+    </script>
+</body>
+</html> 

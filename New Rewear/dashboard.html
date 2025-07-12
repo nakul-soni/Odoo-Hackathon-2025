@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="dashboard_title">Dashboard - ReWear</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-bg">
+    <!-- Header -->
+    <header>
+        <div class="logo" data-i18n="logo"><strong>ReWear</strong></div>
+        <nav>
+            <a href="index.html" data-i18n="nav_home">Home</a>
+            <a href="browse.html" data-i18n="nav_browse">Browse</a>
+            <a href="#" data-i18n="nav_dashboard" class="active">Dashboard</a>
+            <a href="messages.html" data-i18n="nav_messages">Messages</a>
+            <a href="profile.html" data-i18n="nav_profile">Profile</a>
+            <a href="list-item.html" data-i18n="nav_list_item">List Item</a>
+            <a href="admin-login.html" class="admin-link">👨‍💼 Admin</a>
+        </nav>
+        <div class="header-right">
+            <div class="theme-toggle">
+                <button id="themeToggle" aria-label="Toggle theme">
+                    <span class="light-icon">☀️</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard Content -->
+    <main class="dashboard-main">
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <div class="welcome-content">
+                <h1 data-i18n="dashboard_welcome">Welcome back, John!</h1>
+                <p data-i18n="dashboard_subtitle">Here's what's happening with your sustainable fashion journey today.</p>
+            </div>
+            <div class="quick-actions">
+                <button class="action-btn primary" data-i18n="action_list_item" onclick="window.location.href='list-item.html'">
+                    <span class="action-icon">📝</span>
+                    <span>List Item</span>
+                </button>
+                <button class="action-btn secondary" data-i18n="action_browse">
+                    <span class="action-icon">🔍</span>
+                    <span>Browse</span>
+                </button>
+                <button class="action-btn secondary" data-i18n="action_messages">
+                    <span class="action-icon">💬</span>
+                    <span>Messages</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Stats Cards -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👕</div>
+                    <div class="stat-content">
+                        <h3 data-i18n="stat_listed">Items Listed</h3>
+                        <p class="stat-number">12</p>
+                        <span class="stat-change positive">+2 this week</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🤝</div>
+                    <div class="stat-content">
+                        <h3 data-i18n="stat_swaps">Successful Swaps</h3>
+                        <p class="stat-number">8</p>
+                        <span class="stat-change positive">+1 this month</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👀</div>
+                    <div class="stat-content">
+                        <h3 data-i18n="stat_views">Profile Views</h3>
+                        <p class="stat-number">156</p>
+                        <span class="stat-change positive">+23 this week</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-content">
+                        <h3 data-i18n="stat_rating">Rating</h3>
+                        <p class="stat-number">4.8</p>
+                        <span class="stat-change neutral">★★★★★</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content Grid -->
+        <section class="dashboard-grid">
+            <!-- Recent Activity -->
+            <div class="dashboard-card activity-card">
+                <div class="card-header">
+                    <h2 data-i18n="recent_activity">Recent Activity</h2>
+                    <a href="#" class="view-all" data-i18n="view_all">View All</a>
+                </div>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">🔄</div>
+                        <div class="activity-content">
+                            <h4 data-i18n="activity_swap">Swap Request Received</h4>
+                            <p data-i18n="activity_swap_desc">Sarah wants to swap your "Blue Jeans" for her "Summer Dress"</p>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                        <div class="activity-actions">
+                            <button class="btn-small accept" data-i18n="accept">Accept</button>
+                            <button class="btn-small decline" data-i18n="decline">Decline</button>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">💬</div>
+                        <div class="activity-content">
+                            <h4 data-i18n="activity_message">New Message</h4>
+                            <p data-i18n="activity_message_desc">Mike sent you a message about "White Shirt"</p>
+                            <span class="activity-time">5 hours ago</span>
+                        </div>
+                        <div class="activity-actions">
+                            <button class="btn-small primary" data-i18n="reply">Reply</button>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">✅</div>
+                        <div class="activity-content">
+                            <h4 data-i18n="activity_completed">Swap Completed</h4>
+                            <p data-i18n="activity_completed_desc">Successfully swapped "Floral Dress" with Emma</p>
+                            <span class="activity-time">1 day ago</span>
+                        </div>
+                        <div class="activity-actions">
+                            <button class="btn-small secondary" data-i18n="rate">Rate</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- My Listings -->
+            <div class="dashboard-card listings-card">
+                <div class="card-header">
+                    <h2 data-i18n="my_listings">My Listings</h2>
+                    <a href="#" class="view-all" data-i18n="view_all">View All</a>
+                </div>
+                <div class="listings-grid">
+                    <div class="listing-item">
+                        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=100&q=80" alt="Floral Dress">
+                        <div class="listing-info">
+                            <h4 data-i18n="listing_dress">Floral Dress</h4>
+                            <p data-i18n="listing_price">$12</p>
+                            <span class="listing-status active" data-i18n="status_active">Active</span>
+                        </div>
+                        <div class="listing-actions">
+                            <button class="btn-icon" title="Edit">✏️</button>
+                            <button class="btn-icon" title="Delete">🗑️</button>
+                        </div>
+                    </div>
+                    <div class="listing-item">
+                        <img src="https://images.unsplash.com/photo-1524253482453-3fed8d2fe12b?auto=format&fit=crop&w=100&q=80" alt="Blue Jeans">
+                        <div class="listing-info">
+                            <h4 data-i18n="listing_jeans">Blue Jeans</h4>
+                            <p data-i18n="listing_price">$15</p>
+                            <span class="listing-status pending" data-i18n="status_pending">Pending</span>
+                        </div>
+                        <div class="listing-actions">
+                            <button class="btn-icon" title="Edit">✏️</button>
+                            <button class="btn-icon" title="Delete">🗑️</button>
+                        </div>
+                    </div>
+                    <div class="listing-item">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=100&q=80" alt="White Shirt">
+                        <div class="listing-info">
+                            <h4 data-i18n="listing_shirt">White Shirt</h4>
+                            <p data-i18n="listing_price">$10</p>
+                            <span class="listing-status active" data-i18n="status_active">Active</span>
+                        </div>
+                        <div class="listing-actions">
+                            <button class="btn-icon" title="Edit">✏️</button>
+                            <button class="btn-icon" title="Delete">🗑️</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="dashboard-card stats-card">
+                <div class="card-header">
+                    <h2 data-i18n="quick_stats">Quick Stats</h2>
+                </div>
+                <div class="quick-stats">
+                    <div class="quick-stat">
+                        <span class="stat-label" data-i18n="stat_earnings">Total Earnings</span>
+                        <span class="stat-value">$127</span>
+                    </div>
+                    <div class="quick-stat">
+                        <span class="stat-label" data-i18n="stat_savings">CO₂ Saved</span>
+                        <span class="stat-value">24 kg</span>
+                    </div>
+                    <div class="quick-stat">
+                        <span class="stat-label" data-i18n="stat_connections">Connections</span>
+                        <span class="stat-value">47</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Events -->
+            <div class="dashboard-card events-card">
+                <div class="card-header">
+                    <h2 data-i18n="upcoming_events">Upcoming Events</h2>
+                </div>
+                <div class="events-list">
+                    <div class="event-item">
+                        <div class="event-date">
+                            <span class="day">15</span>
+                            <span class="month" data-i18n="month_dec">Dec</span>
+                        </div>
+                        <div class="event-content">
+                            <h4 data-i18n="event_swap">Community Swap Meet</h4>
+                            <p data-i18n="event_location">Central Park, 2:00 PM</p>
+                        </div>
+                        <button class="btn-small primary" data-i18n="join">Join</button>
+                    </div>
+                    <div class="event-item">
+                        <div class="event-date">
+                            <span class="day">22</span>
+                            <span class="month" data-i18n="month_dec">Dec</span>
+                        </div>
+                        <div class="event-content">
+                            <h4 data-i18n="event_workshop">Sustainable Fashion Workshop</h4>
+                            <p data-i18n="event_location">Community Center, 6:00 PM</p>
+                        </div>
+                        <button class="btn-small primary" data-i18n="join">Join</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Notification Toast -->
+    <div id="notificationToast" class="notification-toast" style="display:none;">
+        <div class="toast-content">
+            <span class="toast-icon">✅</span>
+            <span class="toast-message" data-i18n="toast_success">Action completed successfully!</span>
+        </div>
+    </div>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="theme.js"></script>
+    <script>
+    // Dashboard page functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // Require authentication
+        if (authManager && !authManager.requireAuth()) {
+            return;
+        }
+
+        // Update dashboard with user info
+        const currentUser = authManager.getCurrentUser();
+        if (currentUser) {
+            const welcomeElement = document.querySelector('.welcome-content h1');
+            if (welcomeElement) {
+                welcomeElement.textContent = `Welcome back, ${currentUser.name}!`;
+            }
+        }
+
+        // Dashboard functionality
+        const userMenu = document.querySelector('.user-menu');
+        const notificationToast = document.getElementById('notificationToast');
+
+        // User menu toggle
+        if (userMenu) {
+            userMenu.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        }
+
+        // Close user menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (userMenu && !userMenu.contains(e.target)) {
+                userMenu.classList.remove('active');
+            }
+        });
+
+        // Quick action buttons
+        const quickActions = document.querySelectorAll('.quick-action');
+        quickActions.forEach(action => {
+            action.addEventListener('click', function() {
+                const actionType = this.getAttribute('data-action');
+                switch(actionType) {
+                    case 'list-item':
+                        window.location.href = 'list-item.html';
+                        break;
+                    case 'browse':
+                        window.location.href = 'browse.html';
+                        break;
+                    case 'messages':
+                        window.location.href = 'messages.html';
+                        break;
+                    case 'profile':
+                        window.location.href = 'profile.html';
+                        break;
+                }
+            });
+        });
+
+        // Language switching
+        const langSelect = document.getElementById('langSelect');
+        if (langSelect) {
+            langSelect.addEventListener('change', function() {
+                const lang = this.value;
+                translatePage(lang);
+            });
+        }
+
+        function translatePage(lang) {
+            const dict = window.translations[lang] || window.translations['en'];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(dict[key]) {
+                    if(el.tagName.toLowerCase() === 'title') {
+                        document.title = dict[key];
+                    } else {
+                        el.textContent = dict[key];
+                    }
+                }
+            });
+        }
+
+        // Initialize with English
+        translatePage('en');
+    });
+    </script>
+</body>
+</html> 

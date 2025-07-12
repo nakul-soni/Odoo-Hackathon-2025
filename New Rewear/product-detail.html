@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="product_detail_title">Product Detail - ReWear</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="translations.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo" data-i18n="logo"><strong>ReWear</strong></div>
+        <nav>
+            <a href="index.html" data-i18n="nav_home">Home</a>
+            <a href="browse.html" data-i18n="nav_browse">Browse</a>
+            <a href="dashboard.html" data-i18n="nav_dashboard">Dashboard</a>
+            <a href="admin-login.html" class="admin-link">👨‍💼 Admin</a>
+        </nav>
+        <div class="header-right">
+            <select id="langSelect" style="padding:0.5rem;border-radius:8px;border:2px solid #a5d6a7;background:#e8f5e9;color:#388e3c;font-size:0.95rem;margin-right:1rem;">
+                <option value="en">🇺🇸 English</option>
+                <option value="hi">🇮🇳 हिंदी</option>
+            </select>
+            <div class="theme-toggle">
+                <button id="themeToggle" aria-label="Toggle theme">
+                    <span class="light-icon">☀️</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb-nav">
+        <div class="breadcrumb-container">
+            <a href="index.html" data-i18n="nav_home">Home</a>
+            <span class="breadcrumb-separator">›</span>
+            <a href="browse.html" data-i18n="nav_browse">Browse</a>
+            <span class="breadcrumb-separator">›</span>
+            <span id="productName" class="breadcrumb-current">Product</span>
+        </div>
+    </nav>
+
+    <!-- Product Detail Section -->
+    <main class="product-detail-main">
+        <div class="product-detail-container">
+            <!-- Product Images -->
+            <section class="product-images-section">
+                <div class="main-image-container">
+                    <img id="mainImage" src="" alt="" class="main-product-image">
+                    <button class="image-nav-btn prev-btn" id="prevImageBtn">‹</button>
+                    <button class="image-nav-btn next-btn" id="nextImageBtn">›</button>
+                </div>
+                <div class="thumbnail-container" id="thumbnailContainer">
+                    <!-- Thumbnails will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Product Information -->
+            <section class="product-info-section">
+                <div class="product-header">
+                    <h1 id="productTitle" data-i18n="product_title">Product Title</h1>
+                    <div class="product-meta">
+                        <span class="product-category" id="productCategory">Category</span>
+                        <span class="product-condition" id="productCondition">Excellent</span>
+                    </div>
+                </div>
+
+                <div class="product-price-section">
+                    <div class="price-container">
+                        <span class="price-label" data-i18n="price">Price:</span>
+                        <span class="price-amount" id="productPrice">$0</span>
+                    </div>
+                    <div class="original-price" id="originalPrice">
+                        <span data-i18n="original_price">Original Price:</span>
+                        <span class="strikethrough">$0</span>
+                    </div>
+                </div>
+
+                <div class="product-details">
+                    <div class="detail-item">
+                        <span class="detail-label" data-i18n="size">Size:</span>
+                        <span class="detail-value" id="productSize">M</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-i18n="brand">Brand:</span>
+                        <span class="detail-value" id="productBrand">Brand Name</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-i18n="color">Color:</span>
+                        <span class="detail-value" id="productColor">Blue</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-i18n="material">Material:</span>
+                        <span class="detail-value" id="productMaterial">Cotton</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label" data-i18n="age">Age:</span>
+                        <span class="detail-value" id="productAge">1 year</span>
+                    </div>
+                </div>
+
+                <div class="product-description">
+                    <h3 data-i18n="description">Description</h3>
+                    <p id="productDescription">Product description will be loaded here...</p>
+                </div>
+
+                <div class="seller-info">
+                    <h3 data-i18n="seller_info">Seller Information</h3>
+                    <div class="seller-details">
+                        <div class="seller-avatar">
+                            <img id="sellerAvatar" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=60&q=80" alt="Seller">
+                        </div>
+                        <div class="seller-text">
+                            <h4 id="sellerName">John Doe</h4>
+                            <p id="sellerLocation">New York, NY</p>
+                            <div class="seller-rating">
+                                <span class="stars">★★★★★</span>
+                                <span id="sellerRating">4.8</span>
+                                <span id="sellerReviews">(24 reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="product-actions">
+                    <button class="action-btn primary-btn" id="swapBtn" data-i18n="swap_now">Swap Now</button>
+                    <button class="action-btn secondary-btn" id="messageBtn" data-i18n="message_seller">Message Seller</button>
+                    <button class="action-btn outline-btn" id="saveBtn" data-i18n="save_item">Save Item</button>
+                </div>
+
+                <!-- Safety Tips -->
+                <div class="safety-tips">
+                    <h4 data-i18n="safety_tips">Safety Tips</h4>
+                    <ul>
+                        <li data-i18n="safety_tip_1">Meet in a public place for exchanges</li>
+                        <li data-i18n="safety_tip_2">Inspect items thoroughly before swapping</li>
+                        <li data-i18n="safety_tip_3">Use ReWear's secure messaging system</li>
+                        <li data-i18n="safety_tip_4">Report any suspicious activity</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <!-- Similar Products Section -->
+        <section class="similar-products-section">
+            <h2 data-i18n="similar_products">Similar Products</h2>
+            <div class="similar-products-grid" id="similarProductsGrid">
+                <!-- Similar products will be populated by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Swap/Message Modal -->
+    <div id="actionModal" class="modal" aria-modal="true" role="dialog" tabindex="-1" style="display:none;">
+        <div class="modal-content" role="document">
+            <button class="modal-close" aria-label="Close">&times;</button>
+            <div class="modal-body">
+                <h3 id="modalTitle"></h3>
+                <div id="modalContent"></div>
+                <div class="modal-actions">
+                    <button class="action-btn primary-btn" id="modalConfirmBtn"></button>
+                    <button class="action-btn secondary-btn" id="modalCancelBtn" data-i18n="cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background:#e8f5e9;padding:2rem 0;text-align:center;color:#388e3c;font-size:1.1rem;letter-spacing:0.5px;">
+        <div>© <span id="year"></span> <span data-i18n="logo">ReWear</span>. <span data-i18n="footer_rights">All rights reserved.</span></div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="theme.js"></script>
+    <script src="product-detail.js"></script>
+</body>
+</html> 

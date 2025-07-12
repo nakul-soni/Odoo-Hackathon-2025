@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="messages_title">Messages - ReWear</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-bg">
+    <!-- Header -->
+    <header>
+        <div class="logo" data-i18n="logo"><strong>ReWear</strong></div>
+        <nav>
+            <a href="index.html" data-i18n="nav_home">Home</a>
+            <a href="browse.html" data-i18n="nav_browse">Browse</a>
+            <a href="dashboard.html" data-i18n="nav_dashboard">Dashboard</a>
+            <a href="#" data-i18n="nav_messages" class="active">Messages</a>
+            <a href="profile.html" data-i18n="nav_profile">Profile</a>
+            <a href="list-item.html" data-i18n="nav_list_item">List Item</a>
+            <a href="admin-login.html" class="admin-link">👨‍💼 Admin</a>
+        </nav>
+        <div class="header-right">
+            <div class="theme-toggle">
+                <button id="themeToggle" aria-label="Toggle theme">
+                    <span class="light-icon">☀️</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Messages Content -->
+    <main class="messages-main">
+        <div class="messages-container">
+            <!-- Conversations List -->
+            <div class="conversations-panel">
+                <div class="conversations-header">
+                    <h2 data-i18n="conversations">Conversations</h2>
+                    <button class="new-chat-btn" data-i18n="new_chat">+ New Chat</button>
+                </div>
+                <div class="search-conversations">
+                    <input type="text" placeholder="🔍 Search conversations..." data-i18n="search_placeholder" id="searchConversations">
+                </div>
+                <div class="conversations-list" id="conversationsList">
+                    <!-- Conversation items will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Chat Panel -->
+            <div class="chat-panel">
+                <div class="chat-header" id="chatHeader">
+                    <div class="chat-user-info">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=50&q=80" alt="Sarah" class="chat-avatar">
+                        <div class="chat-user-details">
+                            <h3 data-i18n="chat_with">Chat with Sarah</h3>
+                            <span class="online-status" data-i18n="online">Online</span>
+                        </div>
+                    </div>
+                    <div class="chat-actions">
+                        <button class="chat-action-btn" title="Voice Call">📞</button>
+                        <button class="chat-action-btn" title="Video Call">📹</button>
+                        <button class="chat-action-btn" title="More Options">⋯</button>
+                    </div>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Messages will be populated by JavaScript -->
+                </div>
+
+                <div class="chat-input-container">
+                    <div class="chat-input-wrapper">
+                        <input type="text" placeholder="Type a message..." data-i18n="message_placeholder" id="messageInput">
+                        <button class="send-btn" data-i18n="send">Send</button>
+                    </div>
+                    <div class="chat-attachments">
+                        <button class="attachment-btn" title="Attach Image">📷</button>
+                        <button class="attachment-btn" title="Attach File">📎</button>
+                        <button class="attachment-btn" title="Emoji">😊</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- New Chat Modal -->
+    <div id="newChatModal" class="modal" style="display:none;">
+        <div class="modal-content auth-modal">
+            <h3 data-i18n="new_chat_title">Start New Conversation</h3>
+            <div class="new-chat-form">
+                <div class="form-group">
+                    <label data-i18n="select_user">Select User</label>
+                    <select id="userSelect">
+                        <option value="" data-i18n="choose_user">Choose a user...</option>
+                        <option value="sarah">Sarah Johnson</option>
+                        <option value="mike">Mike Chen</option>
+                        <option value="emma">Emma Wilson</option>
+                        <option value="alex">Alex Rodriguez</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="message_subject">Subject</label>
+                    <input type="text" id="chatSubject" data-i18n="subject_placeholder" placeholder="What's this about?">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="auth-btn primary-btn" id="startChat" data-i18n="start_chat">Start Chat</button>
+                    <button type="button" class="auth-btn secondary-btn" id="cancelNewChat" data-i18n="cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notificationToast" class="notification-toast" style="display:none;">
+        <div class="toast-content">
+            <span class="toast-icon">✅</span>
+            <span class="toast-message" data-i18n="toast_success">Message sent successfully!</span>
+        </div>
+    </div>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="theme.js"></script>
+    <script>
+    // Messages page functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // Require authentication
+        if (authManager && !authManager.requireAuth()) {
+            return;
+        }
+
+        // Messages functionality
+        const userMenu = document.querySelector('.user-menu');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+        const conversationList = document.getElementById('conversationList');
+        const messageArea = document.getElementById('messageArea');
+
+        // User menu toggle
+        if (userMenu) {
+            userMenu.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        }
+
+        // Close user menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (userMenu && !userMenu.contains(e.target)) {
+                userMenu.classList.remove('active');
+            }
+        });
+
+        // Send message functionality
+        if (sendButton && messageInput) {
+            sendButton.addEventListener('click', sendMessage);
+            messageInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        }
+
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message) {
+                // Add message to chat
+                addMessageToChat('You', message, 'sent');
+                messageInput.value = '';
+                
+                // Simulate reply
+                setTimeout(() => {
+                    addMessageToChat('John Doe', 'Thanks for your message! I\'ll get back to you soon.', 'received');
+                }, 1000);
+            }
+        }
+
+        function addMessageToChat(sender, text, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.innerHTML = `
+                <div class="message-content">
+                    <div class="message-sender">${sender}</div>
+                    <div class="message-text">${text}</div>
+                    <div class="message-time">${new Date().toLocaleTimeString()}</div>
+                </div>
+            `;
+            
+            if (messageArea) {
+                messageArea.appendChild(messageDiv);
+                messageArea.scrollTop = messageArea.scrollHeight;
+            }
+        }
+
+        // Language switching
+        const langSelect = document.getElementById('langSelect');
+        if (langSelect) {
+            langSelect.addEventListener('change', function() {
+                const lang = this.value;
+                translatePage(lang);
+            });
+        }
+
+        function translatePage(lang) {
+            const dict = window.translations[lang] || window.translations['en'];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(dict[key]) {
+                    if(el.tagName.toLowerCase() === 'title') {
+                        document.title = dict[key];
+                    } else {
+                        el.textContent = dict[key];
+                    }
+                }
+            });
+        }
+
+        // Initialize with English
+        translatePage('en');
+    });
+    </script>
+</body>
+</html> 

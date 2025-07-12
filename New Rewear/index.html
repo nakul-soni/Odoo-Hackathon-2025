@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="title">ReWear - Sustainable Clothing Resell</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Add this in the <head> or before script.js -->
+    <script src="translations.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo" data-i18n="logo"><strong>ReWear</strong></div>
+        <nav>
+            <a href="#" data-i18n="nav_home">Home</a>
+            <a href="browse.html" data-i18n="nav_browse">Browse</a>
+            <a href="dashboard.html" data-i18n="nav_dashboard">Dashboard</a>
+            <a href="admin-login.html" class="admin-link">👨‍💼 Admin</a>
+        </nav>
+        <div class="header-right">
+            <div class="theme-toggle">
+                <button id="themeToggle" aria-label="Toggle theme">
+                    <span class="light-icon">☀️</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 data-i18n="hero_title">Give Clothes a Second Life</h1>
+        <p data-i18n="hero_sub">Resell your pre-loved clothes and join the movement for a sustainable future.</p>
+        <button class="cta-btn" data-i18n="cta_swap">Start Swapping</button>
+        <a href="browse.html" class="cta-btn" data-i18n="cta_browse">Browse Items</a>
+    </section>
+
+    <!-- 3D Carousel/Slider for Featured Clothing -->
+    <section class="carousel-section">
+        <h2 data-i18n="featured_title">Featured Clothing</h2>
+        <div class="carousel-wrapper">
+            <button class="carousel-nav prev-btn" aria-label="Previous slide">&#8249;</button>
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-slide" data-index="0">
+                    <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80" alt="People swapping clothes at a community event">
+                    <h3 data-i18n="featured_1">Swap at Community Events</h3>
+                </div>
+                <div class="carousel-slide" data-index="1">
+                    <img src="https://images.unsplash.com/photo-1524253482453-3fed8d2fe12b?auto=format&fit=crop&w=400&q=80" alt="Happy users exchanging clothes">
+                    <h3 data-i18n="featured_2">Happy Swappers</h3>
+                </div>
+                <div class="carousel-slide" data-index="2">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Diverse clothing options for all ages">
+                    <h3 data-i18n="featured_3">Diverse Clothing for All</h3>
+                </div>
+                <div class="carousel-slide" data-index="3">
+                    <img src="https://images.unsplash.com/photo-1469398715555-76331a6c7c9b?auto=format&fit=crop&w=400&q=80" alt="Eco-friendly fashion choices">
+                    <h3 data-i18n="featured_4">Eco-Friendly Fashion</h3>
+                </div>
+                <div class="carousel-slide" data-index="4">
+                    <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80" alt="Friends swapping clothes at home">
+                    <h3 data-i18n="featured_5">Swap with Friends</h3>
+                </div>
+            </div>
+            <button class="carousel-nav next-btn" aria-label="Next slide">&#8250;</button>
+        </div>
+        <div class="carousel-dots" id="carouselDots"></div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <h2 data-i18n="categories_title">Categories</h2>
+        <div class="categories-grid">
+            <a href="browse.html?category=men" class="category-card" data-i18n="cat_men">Men's Wear</a>
+            <a href="browse.html?category=women" class="category-card" data-i18n="cat_women">Women's Wear</a>
+            <a href="browse.html?category=kids" class="category-card" data-i18n="cat_kids">Kids' Wear</a>
+            <a href="browse.html?category=accessories" class="category-card" data-i18n="cat_accessories">Accessories</a>
+            <a href="browse.html?category=shoes" class="category-card" data-i18n="cat_shoes">Shoes</a>
+            <a href="browse.html?category=sportswear" class="category-card" data-i18n="cat_sportswear">Sportswear</a>
+        </div>
+    </section>
+
+    <!-- Product Listings -->
+    <section class="products-section">
+        <h2 data-i18n="products_title">Product Listings</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=300&q=80" alt="Floral Dress ready for swap">
+                <h3 data-i18n="prod_1">Floral Dress</h3>
+                <p data-i18n="prod_1_desc">Size M | $12</p>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1524253482453-3fed8d2fe12b?auto=format&fit=crop&w=300&q=80" alt="Blue Jeans available for exchange">
+                <h3 data-i18n="prod_2">Blue Jeans</h3>
+                <p data-i18n="prod_2_desc">Size 32 | $15</p>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80" alt="White Shirt for swapping">
+                <h3 data-i18n="prod_3">White Shirt</h3>
+                <p data-i18n="prod_3_desc">Size L | $10</p>
+            </div>
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1469398715555-76331a6c7c9b?auto=format&fit=crop&w=300&q=80" alt="Kids Hoodie available for swap">
+                <h3 data-i18n="prod_4">Kids Hoodie</h3>
+                <p data-i18n="prod_4_desc">Size S | $8</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials (Optional) -->
+    <section class="testimonials-section">
+        <h2 data-i18n="testimonials_title">What Our Users Say</h2>
+        <blockquote data-i18n="testimonial_1">"ReWear made it so easy to resell my clothes and help the planet!"</blockquote>
+        <blockquote data-i18n="testimonial_2">"I found amazing deals and gave my wardrobe a fresh start."</blockquote>
+    </section>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="theme.js"></script>
+</body>
+</html> 
