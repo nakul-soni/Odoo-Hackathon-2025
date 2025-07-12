@@ -1,5 +1,5 @@
 # Odoo-Hackathon-2025
-Problem Statement: 
+Problem Statement: ReWear – Community Clothing Exchange 
 Team Members:
 1.Nakul Soni  Email:nakulsoni2006@gmail.com
 2.Mukund Nagawadiya  Email:mmaheshwari0926@gmail.com
